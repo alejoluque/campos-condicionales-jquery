@@ -1,0 +1,33 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js"></script>
+<script>
+	
+	
+		var seleccionaDoc = jQuery('select[name=tipo_documento] option').filter(':selected').val();	
+		
+			jQuery("#form-uni").validate({
+			rules: {
+				identificacion_cc: {
+					required: true,
+					pattern: /^[1-9]/,
+					minlength:8,
+					maxlength:11
+				},
+			},
+			messages: {
+			identificacion_cc: {
+								pattern: 'La identificación no puede empezar con cero',
+								minlength: 'Mínimo 8 dígitos',
+								maxlength: "Máximo 11 dígitos",
+								required:"Requerido"
+							}
+						}
+					});
+	jQuery('#form-uni input').on('keyup blur', function () {
+						if (jQuery('#form-uni').valid()) {
+							jQuery('input.wpcf7-submit').prop('disabled', false);
+						} else {
+							jQuery('input.wpcf7-submit').prop('disabled', 'disabled');
+						}
+	});
+  </script>
